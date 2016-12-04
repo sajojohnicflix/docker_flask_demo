@@ -57,8 +57,7 @@ def extract_animation(manifest_url, time, width, height, extension):
         "-ss", time,
         "-t", "2",
         "-i", manifest_url,
-        "-pix_fmt", "gray",
-        "-vf", "setpts=2*PTS,scale={}:{}:flags=lanczos,palettegen".format(width, height),
+        "-vf", "scale={}:{}:flags=lanczos,palettegen".format(width, height),
         palette_filename
     ]
     call(ffmpeg_args)
@@ -69,8 +68,7 @@ def extract_animation(manifest_url, time, width, height, extension):
         "-t", "2",
         "-i", manifest_url,
         "-i", "/tmp/palette.png",
-        "-pix_fmt", "gray",
-        "-filter_complex", "setpts=2*PTS,scale={}:{}:flags=lanczos[x];[x][1:v]paletteuse".format(width, height),
+        "-filter_complex", "scale={}:{}:flags=lanczos[x];[x][1:v]paletteuse".format(width, height),
         filename
     ]
     call(ffmpeg_args)

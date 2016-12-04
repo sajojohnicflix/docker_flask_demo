@@ -18,7 +18,7 @@ def get_screenshot(encoding_task_id, time, dimensions, extension):
 
 @app.route('/health')
 def hello():
-    return 200
+    return "service healthy"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='8080')
